@@ -1,66 +1,124 @@
 <template>
-<div>
-  <div class="zong">
-	  <div class="hezi">
-   <el-form ref="form" :model="form" label-width="80px">
-  <el-form-item label="账号名称">
-    <el-input v-model="form.name"></el-input>
-  </el-form-item>
-  <el-form-item label="密码">
-    <el-input v-model="form.mima"></el-input>
-  </el-form-item>
-  <el-form-item>
-    <el-button type="primary" @click="onSubmit">登录</el-button>
-  </el-form-item>
-</el-form>
-</div>
-  </div>
+  <div class="item_container">
+    <div class="item_wrapper">
+      <div class="title">欢迎登陆 - MMALL管理系统</div>
+      <el-form
+        :model="ruleForm"
+        :rules="rules"
+        ref="loginFormRef"
+        label-width="100px"
+        class="demo-dynamic"
+      >
+        <el-form-item prop="username">
+          <el-input
+            type="text"
+            v-model="ruleForm.username"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+
+        <el-form-item prop="password">
+          <el-input
+            type="password"
+            v-model="ruleForm.password"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+        
+        <el-form-item>
+          <el-button type="primary" @click="addLogin" class="btn"
+            >登录</el-button
+          >
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        form: {
-          name: '',
-          mima:''
-        }
+import {login} from '../http/index'
+export default {
+  data() {
+    return {
+      ruleForm: {
+        username: "admin",
+        password: "admin"
+      },
+      rules: {
+        username: [
+          { required: true, message: "请输入你正确的账号", trigger: "blur" }
+        ],
+        password: [
+          {
+            required: true,
+            min: 1,
+            max: 5,
+            message: "长度在 6 到 18 个字符",
+            trigger: "blur"
+          }
+        ]
       }
-    },
-    methods: {
-    onSubmit() {
-      this.$axios
-        .post("http://ceshi5.dishait.cn/admin/login", {
-          username: this.form.name,
-          password: this.form.mima,
-        })
-        .then((res) => {
-          localStorage.token = res.data.data.token;
-          this.$router.push({ path: "/home" });
-        })
-        .catch(() => {
-          alert("登录失败");
-        });
-    },
-    //点击请求接口 
+    };
   },
-    
+
+  methods: {
+   async addLogin() {
+       this.$refs.loginFormRef.validate(async (valid)=>{
+          // if(!valid) return;
+          //这是讲data重命名为res
+           const { data : res } = await login(this.ruleForm)
+
+           if (res.data.status == 0) return this.$message.error("登录失败！");
+            console.log(valid)
+           this.$router.push('/home')
+       })
+    }
+  },
+
+  mounted(){
+   
   }
+  
+  };
 </script>
 
-<style>
-.zong{
-	width: 100%;
-	height: 800px;
-	display: inline-flex;
-	justify-content:space-around;
-	align-items: center;
-
+<style scoped>
+.item_container {
+  width: 100vw;
+  height: 100vh;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(243, 243, 243);
 }
-.hezi{
-	width: 500px;
-	height: 400px;
-	text-align: center;
+
+.item_wrapper {
+  width: 600px;
+  height: 200px;
+  background-color: rgb(255, 255, 255);
+  /* display: inline-flex;
+    justify-content: space-around;
+    align-items: center; */
+  /* flex-wrap: wrap; */
+}
+
+.demo-dynamic {
+  width: 500px;
+  /* display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; */
+}
+
+.btn {
+  width: 100%;
+}
+
+.title {
+  width: 100%;
+  font-size: 19px;
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-start;
 }
 </style>

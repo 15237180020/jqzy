@@ -14,7 +14,9 @@ Vue.use(ElementUI);
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 Vue.use(Antd);
-
+//api
+import API from './API/index'
+Vue.use(API)
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios;
 new Vue({

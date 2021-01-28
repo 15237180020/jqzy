@@ -7,13 +7,14 @@
       >
         <el-col :span="24">
           <el-menu
+            router
             default-active="2"
             class="el-menu-vertical-demo"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b"
           >
-            <el-menu-item index="1">
+            <el-menu-item index="/home/js">
               <i class="el-icon-menu"></i>
               <span slot="title">首页</span>
             </el-menu-item>
@@ -23,8 +24,8 @@
                 <span>商品</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
+                <el-menu-item index="/home/xs">商品分类</el-menu-item>
+                <el-menu-item index="1-2">商品列表</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
             <el-submenu index="3">
@@ -49,16 +50,14 @@
               style="margin-right: 15px"
             ></i>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>查看</el-dropdown-item>
-              <el-dropdown-item>新增</el-dropdown-item>
-              <el-dropdown-item>删除</el-dropdown-item>
+              <el-dropdown-item>退出</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>王小虎</span>
+          <span>admin</span>
         </el-header>
 
         <el-main>
-
+          <router-view />
         </el-main>
       </el-container>
     </el-container>
