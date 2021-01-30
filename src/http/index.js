@@ -68,20 +68,6 @@ export const addList = (data) => Request({
 })
 
 
-// 二级分类
-// export const cateList = (data) => Request({
-//     url: `/api/category/get_category.do`,
-//     method: 'post',
-//     params:data
-// })
-
-
-/**
- * 导出这个对象  export导出要加 {} 号
- * 导出之后 页面组件中导入 调用这个函数 给他传参
- * 这个函数值就是一个函数promise对象 
- * 
- */
 
 export const cateList = (data) => {
     return Request({

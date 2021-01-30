@@ -107,8 +107,6 @@ export default {
       const res = await shang(
         `/api/product/list.do?pageNum=${this.list.pageNum}`
       )
-  
-      // console.log(res)
 
       this.userList = res.data.data.list
 
