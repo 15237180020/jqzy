@@ -121,7 +121,7 @@ export default {
   ongoods(id){ // 详情
     // console.log(id)
     this.$router.push({
-      path:'/ongoods',
+      path:'/home/ongoods',
       query:{
         id
       }
@@ -130,7 +130,7 @@ export default {
 
   onModify(id){ // 编辑
     this.$router.push({
-      path:'/modify',
+      path:'/home/modify',
       query:{id}
     })
   },
@@ -204,7 +204,7 @@ export default {
         });
   },
 addListuser(){
-  this.$router.push('/addList')
+  this.$router.push('/home/addList')
 }
 
 },

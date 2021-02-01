@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { xiang ,cateList}  from '../../http/index'
+import { xiang ,cateList}  from '../http/index'
 export default {
     data(){
         return {

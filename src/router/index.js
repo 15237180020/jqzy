@@ -25,6 +25,18 @@ Vue.use(VueRouter)
       path:"zj",
       name:"jiaoshi",
       component: () => import('../views/dh/jiaoshi.vue')
+      }, {
+        path: "ongoods",
+        name: "ongoods",
+        component: () => import('../views/dh/onGoods')
+      }, {
+        path: "modify",
+        name: "modify",
+        component: () => import('../views/dh/modify.vue')
+      }, {
+        path: "addList",
+        name: "addList",
+        component: () => import('../views/dh/addList.vue')
     }]
   },
   {
