@@ -37,6 +37,10 @@ Vue.use(VueRouter)
         path: "addList",
         name: "addList",
         component: () => import('../views/dh/addList.vue')
+      }, {
+        path: "userList",
+        name: "userList",
+        component: () => import('../views/dh/userList.vue')
     }]
   },
   {
